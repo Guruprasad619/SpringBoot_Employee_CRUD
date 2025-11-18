@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Employee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+            background: white;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        img {
+            border-radius: 8px;
+        }
+        button {
+            margin: 2px;
+            padding: 6px 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .delete-btn {
+            background-color: #dc3545;
+        }
+        .delete-btn:hover {
+            background-color: #b02a37;
+        }
+    </style>
+</head>
+
+<body>
+    <div align="center">
+        <h1>Manage Employee</h1>
+        <h2 th:text="${message}"></h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Salary</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="emp : ${list}">
+                    <td th:text="${emp.name}">Name</td>
+                    <td th:text="${emp.dept}">Department</td>
+                    <td th:text="${emp.salary}">Salary</td>
+                    <td>
+                        <img th:src="${emp.imageLink}" alt="Employee Image" width="100" height="100">
+                    </td>
+                    <td>
+                        <a th:href="'/edit?id='+${emp.id}">
+                            <button>Edit</button></a>
+                        
+                        <a th:href="'/delete?id='+${emp.id}">
+                            <button class="delete-btn">Delete</button></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+              <a href="/"> <button>Back</button></a>    
+        
+    </div>.
+</body>
+</html>
